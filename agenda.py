@@ -1,14 +1,39 @@
-db = []
+contatos = {}
 
-contato = {'nome': '', 'telefone': '', 'email': '', 'midias_sociais': []}
+msg_contato_inexistente = "Verfique se o nome que você digitou realmente existe."
 
 def inserir():
-    contato['nome'] = str(input("Insira seu nome aqui: ")) 
-    contato['telefone'] = str(input("Insira telefone aqui: "))
-    contato['email'] = str(input("Insira seu email aqui: "))
-    contato['midias_sociais'].append({'twitter': str(input("Insira seu twitter aqui:  "))}) 
-    contato['midias_sociais'].append({'instagram': str(input("Insira seu instagram aqui:  "))})
-    db.append(contato)
+    nome_contato = str(input("Insira o nome do contato aqui: ")).capitalize() 
+    contatos[nome_contato] = {}
+    contatos[nome_contato]['telefone'] = str(input("Insira o telefone aqui: "))
+    contatos[nome_contato]['email'] = str(input("Insira o email aqui: "))
+    contatos[nome_contato]['midias_sociais'] = [{'twitter': str(input("Insira seu twitter aqui:  "))}]
+    contatos[nome_contato]['midias_sociais'].append({'instagram': str(input("Insira seu instagram aqui:  "))})
+    print("Contato inserido com sucesso!")
 
+def remover():
+    try:
+        del contatos[str(input("Insira o nome do contato que deseja remover." )).capitalize()]
+        print("Contato removido com sucesso!!!")
+    except:
+        print(msg_contato_inexistente)
+
+def consultar():
+    try:
+        print(contatos[str(input("Insira o nome do contato que deseja encontrar." )).capitalize()])
+    except:
+        print(msg_contato_inexistente)
+
+def atualizar():
+   # try:
+        
+        nome_contato_atualizar = str(input("Insira o nome do contato que deseja remover." )).capitalize()
+        contatos[nome_contato_atualizar] = contatos[nome_contato_atualizar]
+       # contatos[]
+    #:
+
+    
 inserir()
-print(db)
+consultar()
+print(contatos)
+
